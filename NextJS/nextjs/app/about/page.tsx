@@ -1,31 +1,24 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-// export const metadata = {
-//   title: "About page",
-//   description: "What's it's all about?",
-// };
+export const metadata = {
+  title: "About page",
+  description: "What's it's all about?",
+};
 
-export default function About() {
-  const [data, setData] = useState([]);
+const fetchTodos = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  return await res.json();
+};
 
-  useEffect(() => {
-    const fetchTodos = async () => {
-      const res = await fetch("https://jsonplaceholder.typicode.com/todos");
-      const data = await res.json();
-      setData(data);
-    };
-    fetchTodos();
-  }, []);
+export default async function About() {
+  const todos = await fetchTodos();
 
   return (
     <main>
       <Link href={"/"}>Home Page</Link>
       <h1>About Page</h1>
 
-      {data.map((todo) => (
+      {todos.map((todo) => (
         <p key={todo.id}>{todo.title}</p>
       ))}
     </main>
