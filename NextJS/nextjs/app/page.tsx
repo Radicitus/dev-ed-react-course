@@ -1,10 +1,22 @@
-import Link from "next/link";
+export const revalidate = 60;
 
-export default function Home() {
+const fetchTodos = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  return await res.json();
+};
+
+async function Static() {
+  const todos = await fetchTodos();
+
   return (
     <main>
-      <Link href={"/about"}>About Page</Link>
-      <h1>Hello Next 13</h1>
+      <h1>Static</h1>
+
+      {todos.map((todo: { title: string; id: number }) => (
+        <p key={todo.id}>{todo.title}</p>
+      ))}
     </main>
   );
 }
+
+export default Static;
