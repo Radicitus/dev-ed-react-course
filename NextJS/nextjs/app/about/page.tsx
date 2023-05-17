@@ -18,7 +18,7 @@ export default async function About() {
       <Link href={"/"}>Home Page</Link>
       <h1>About Page</h1>
 
-      {todos.map((todo) => (
+      {todos.map((todo: { title: string; id: number }) => (
         <p key={todo.id}>{todo.title}</p>
       ))}
     </main>
