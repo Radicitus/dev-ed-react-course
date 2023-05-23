@@ -11,8 +11,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className="bg-black">
+      <body className="mx-4 my-8 justify-center items-center md:mx-12 lg:mx-48">
+        {children}
+      </body>
     </html>
   );
 }
