@@ -3,23 +3,21 @@
 import { useState, useEffect } from "react";
 
 function CSR() {
-  const [todos, setTodos] = useState([]);
+  const [message, setMessage] = useState({});
+
   useEffect(() => {
-    const fetchTodos = async () => {
-      const res = await fetch("https://jsonplaceholder.typicode.com/todos");
-      const data = await res.json();
-      setTodos(data);
+    const fetchMessage = async () => {
+      const res = await fetch("/api/todos");
+      const message = await res.json();
+      console.log(message);
+      setMessage(message);
     };
-    fetchTodos();
+    fetchMessage();
   }, []);
 
   return (
     <main>
       <h1>CSR</h1>
-
-      {todos.map((todo: { title: string; id: number }) => (
-        <p key={todo.id}>{todo.title}</p>
-      ))}
     </main>
   );
 }
