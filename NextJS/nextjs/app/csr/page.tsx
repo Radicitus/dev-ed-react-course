@@ -1,23 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function CSR() {
   const [message, setMessage] = useState({});
 
-  useEffect(() => {
-    const fetchMessage = async () => {
-      const res = await fetch("/api/todos");
-      const message = await res.json();
-      console.log(message);
-      setMessage(message);
-    };
-    fetchMessage();
-  }, []);
+  const fetchMessage = async () => {
+    const res = await fetch("/api/todos");
+    const message = await res.json();
+    console.log(message);
+    setMessage(message);
+  };
 
   return (
     <main>
-      <h1>CSR</h1>
+      <h1 onClick={fetchMessage}>CSR</h1>
     </main>
   );
 }
